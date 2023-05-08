@@ -1,0 +1,57 @@
+<app-header></app-header>
+
+<br>
+
+<form id="addAssetForm" class="row g-3">
+  <div class="col-md-3">
+    <label for="cars">Asset Type: </label>
+    <select name="assetTypes" id="assetTypes" #assetType>
+      <option value="Desktop">Desktop</option>
+      <option value="Laptop">Laptop</option>
+      <option value="Display">Display</option>
+      <option value="Phone">Phone</option>
+      <option value="External-Hard-Drive">External Hard Drive</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+  <div class="col-md-4">
+    <label for="assetDescription">Description: </label>
+    <input type="text" name="assetDescription" id="assetDescription" #description>
+  </div>
+  <div class="col-md-4">
+    <label for="employeeID">Employee ID: </label>
+    <input type="text" name="employeeID" id="employeeID" #employeeID>
+  </div>
+  <div class="col-11">
+    <button class="btn btn-primary" (click)="addAsset(assetType.value, description.value, employeeID.value)" type="submit">Add Asset</button>
+  </div>
+</form>
+<input type="text" class="search" placeholder="Asset Search">
+<h1>Assets:</h1>
+<span class="counter"></span>
+<div *ngIf="assets">
+  <table class="table table-hover results">
+    <thead>
+      <tr>
+        <th scope="col">Tag ID</th>
+        <th scope="col">Asset Type</th>
+        <th scope="col">Description</th>
+        <th scope="col">Date Added</th>
+        <th scope="col">Assigned To</th>
+        <th scope="col">Retired</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let a of assets">
+        <td>{{a.assetTagId}}</td>
+        <td>{{a.assetType}}</td>
+        <td>{{a.description}}</td>
+        <td>{{a.dateAdded}}</td>
+        <td>{{a.assignedTo}}</td>
+        <td>{{a.retired}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script src="/src//assets/js/tableSearch.js"></script>
